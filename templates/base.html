@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toners</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: Free, open source, & modern CSS framework based on Flexbox" width="112" height="28">
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ url_for('toner_views.show_all_toners') }}">
+                    All Toners
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

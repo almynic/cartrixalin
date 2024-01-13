@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">{{ toner.name }}</h1>
+            <p>Brand: {{ toner.brand }}</p>
+            <p>Color: {{ toner.color }}</p>
+            <p>Cartridge No: {{ toner.cartridge_no }}</p>
+            <p>Compatible Printers: {{ toner.compatible_printers }}</p>
+        </div>
+    </section>
+{% endblock %}

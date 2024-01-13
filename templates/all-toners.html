@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-3">All Toners</h1>
+            {% for toner in toners %}
+            <div class="box">
+                <h2 class="title is-5"><a href="{{ url_for('toner_views.show_toner', id=toner.id) }}">{{ toner.name }}</a></h2>
+                <p>Brand: {{ toner.brand }}</p>
+                <p>Color: {{ toner.color }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
