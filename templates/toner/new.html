@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">New Toner</h1>
+            <form method="POST">
+                {% set form_fields = ['name', 'brand', 'color', 'cartridge_no', 'compatible_printers'] %}
+                {{ form.hidden_tag() }}
+                {% for field in form_fields %}
+                    <div class="field">
+                        <label class="label">{{ field.title() }}</label>
+                        <div class="control">
+                          <!-- Adding Bulma's input class -->
+                          {{ form[field](class="input") }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="field">
+                    <div class="control">
+                        <!-- Adding Bulma's button class -->
+                        <input type="submit" value="Submit" class="button is-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

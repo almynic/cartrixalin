@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-3">Marken</h1>
+            <h2 class="title is-5"><a href="{{ url_for('brand_views.new_brand') }}" class="button is-primary">Neu</a>
+            </h2>
+            {% for brand in brands %}
+                <div class="box">
+                    <h2 class="title is-5"><a
+                            href="{{ url_for('brand_views.show_brand', brand_id=brand.id) }}">{{ brand.name }}</a></h2>
+                    <form action="{{ brand.id }}/delete" method="POST">
+                        <!-- Hidden input field to submit the id -->
+                        <input type="hidden" name="id" value="{{ brand.id }}">
+                        <button class="button is-danger mt-2" type="submit">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

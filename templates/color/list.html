@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-3">Farben</h1>
+            <div class="is-inline-flex">
+                <h2 class="title is-5"><a href="{{ url_for('color_views.new_color') }}"
+                                          class="button is-primary">Neu</a></h2>
+                <h2 class="title is-5 ml-2"><a href="{{ url_for('color_views.new_color') }}"
+                                               class="button is-secondary">Upload</a></h2>
+            </div>
+            <div class="is-flex is-flex-wrap-wrap">
+                {% for color in colors %}
+                    <div class="box flex-grow-1 flex-shrink-1"
+                         style="flex-basis: calc(33.3333% - ((40px * 2.6667) - 40px)); margin: 20px;">
+                        <h2 class="title is-5"><a
+                                href="{{ url_for('toner_views.show_toner', id=color.id) }}">{{ color.name }}</a></h2>
+                        <p>Name: {{ color.name }}</p>
+                        <p>Hex: {{ color.hex }}</p>
+                        <div class="{{ color.name }}" style="width: 48px; height: 48px"></div>
+                        <form action="delete" method="POST">
+                            <!-- Hidden input field to submit the id -->
+                            <input type="hidden" name="id" value="{{ color.id }}">
+
+                            <button class="button is-danger mt-2" type="submit">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            var colorName = '{{ color.name }}'
+                            console.log(colorName)
+                            var hexColor = '{{ color.hex }}'; // replace this with your dynamic color
+                            $('.' + colorName).css('background-color', hexColor);
+                        });
+                    </script>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
