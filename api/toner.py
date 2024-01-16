@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, jsonify
+from flask import Blueprint, request, jsonify
 
 from constants.http import HTTP_STATUS_CREATED, HTTP_STATUS_OK
 from services.toner import TonerService
@@ -25,7 +25,7 @@ def create_toner():
 
 @toner_api.route('/<int:id>', methods=['PUT'])
 def update_toner(id):
-    updated_toner = TonerService.update_toner(id, request.json)
+    updated_toner = TonerService.update(id, request.json)
     return jsonify(updated_toner.to_dict()), HTTP_STATUS_OK
 
 
