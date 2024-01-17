@@ -17,15 +17,15 @@ def get_brands():
     return jsonify(to_dict_list(brands)), HTTP_STATUS_OK
 
 
-@brand_api.route('', methods=['POST'])
+@brand_api.route('/', methods=['POST'])
 def create_brand():
     new_brand = BrandService.create(request.json)
     return jsonify(new_brand.to_dict()), HTTP_STATUS_CREATED
 
 
-@brand_api.route('/<int:id>', methods=['PUT'])
+@brand_api.route('<int:id>', methods=['PUT'])
 def update_brand(id):
-    updated_brand = BrandService.update_brand(id, request.json)
+    updated_brand = BrandService.update(id, request.json)
     return jsonify(updated_brand.to_dict()), HTTP_STATUS_OK
 
 
