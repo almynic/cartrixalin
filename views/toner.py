@@ -1,7 +1,6 @@
 from flask import render_template, Blueprint, flash, redirect, url_for, request
 
 from forms.toner import TonerForm
-from models.toner import Toner
 from services.toner import TonerService
 
 toner_views = Blueprint('toner_views', __name__, url_prefix='/toners')

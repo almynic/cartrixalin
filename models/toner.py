@@ -1,14 +1,5 @@
 from database import db
 
-# Toner properties
-BRAND = "brand"
-NAME = "name"
-COLOR = "color"
-SCOPE_OF_DELIVERY = "scope_of_delivery"
-CARTRIDGE_NO = "cartridge_no"
-COMPATIBLE_PRINTERS = "compatible_printers"
-MAX_PRINTABLE_PAGES = "max_printable_pages"
-
 
 class Toner(db.Model):
     """
@@ -33,10 +24,13 @@ class Toner(db.Model):
     color = db.Column(db.String(50))
     scope_of_delivery = db.Column(db.String(100))
     cartridge_no = db.Column(db.String(50))
+    cartridge_size = db.Column(db.String(2))
+    cartridge_type = db.Column(db.String(50))
     compatible_printers = db.Column(db.String(200))
     max_printable_pages = db.Column(db.Integer)
 
     def to_dict(self):
-        return {"id": self.id, BRAND: self.brand, NAME: self.name, COLOR: self.color,
-                SCOPE_OF_DELIVERY: self.scope_of_delivery, CARTRIDGE_NO: self.cartridge_no,
-                COMPATIBLE_PRINTERS: self.compatible_printers, MAX_PRINTABLE_PAGES: self.max_printable_pages}
+        return {"id": self.id, "brand": self.brand, "name": self.name, "color": self.color,
+                "scope_of_delivery": self.scope_of_delivery, "cartridge_no": self.cartridge_no,
+                "cartridge_size": self.cartridge_size, "compatible_printers": self.compatible_printers,
+                "max_printable_pages": self.max_printable_pages}

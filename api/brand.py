@@ -23,7 +23,7 @@ def create_brand():
     return jsonify(new_brand.to_dict()), HTTP_STATUS_CREATED
 
 
-@brand_api.route('<int:id>', methods=['PUT'])
+@brand_api.route('/<int:id>', methods=['PUT'])
 def update_brand(id):
     updated_brand = BrandService.update(id, request.json)
     return jsonify(updated_brand.to_dict()), HTTP_STATUS_OK

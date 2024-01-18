@@ -17,7 +17,7 @@ def get_toners():
     return jsonify(to_dict_list(toners)), HTTP_STATUS_OK
 
 
-@toner_api.route('', methods=['POST'])
+@toner_api.route('/', methods=['POST'])
 def create_toner():
     new_toner = TonerService.create(request.json)
     return jsonify(new_toner.to_dict()), HTTP_STATUS_CREATED

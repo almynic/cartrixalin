@@ -14,10 +14,8 @@
                     <div class="box flex-grow-1 flex-shrink-1"
                          style="flex-basis: calc(33.3333% - ((40px * 2.6667) - 40px)); margin: 20px;">
                         <h2 class="title is-5"><a
-                                href="{{ url_for('toner_views.show_toner', id=color.id) }}">{{ color.name }}</a></h2>
-                        <p>Name: {{ color.name }}</p>
-                        <p>Hex: {{ color.hex }}</p>
-                        <div class="{{ color.name }}" style="width: 48px; height: 48px"></div>
+                                href="{{ url_for('color_views.show_color', color_id=color.id) }}">{{ color.name }}</a>
+                        </h2>
                         <form action="delete" method="POST">
                             <!-- Hidden input field to submit the id -->
                             <input type="hidden" name="id" value="{{ color.id }}">
@@ -27,14 +25,6 @@
                             </button>
                         </form>
                     </div>
-                    <script>
-                        $(document).ready(function () {
-                            var colorName = '{{ color.name }}'
-                            console.log(colorName)
-                            var hexColor = '{{ color.hex }}'; // replace this with your dynamic color
-                            $('.' + colorName).css('background-color', hexColor);
-                        });
-                    </script>
                 {% endfor %}
             </div>
         </div>

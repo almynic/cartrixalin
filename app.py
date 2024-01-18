@@ -1,22 +1,22 @@
+import os
+
 from flask import Flask
+from flask_migrate import Migrate
 
 from api.brand import brand_api
-from database import db
-
 from api.color import color_api
 from api.toner import toner_api
+from database import db
 from views.brand import brand_views
-
 from views.color import color_views
 from views.index import index_views
 from views.toner import toner_views
-
-import os
 
 SECRET_KEY = os.urandom(32)
 
 
 def define_routes(application):
+
     # Register views routes
     application.register_blueprint(toner_views)
     application.register_blueprint(color_views)
@@ -44,6 +44,8 @@ def create_app(config=None):
     db.init_app(app)
     with app.app_context():
         db.create_all()
+
+    migrate = Migrate(app, db)  # initialize flask-migrate
 
     define_routes(app)
 

@@ -17,7 +17,7 @@ def get_colors():
     return jsonify(to_dict_list(colors)), HTTP_STATUS_OK
 
 
-@color_api.route('', methods=['POST'])
+@color_api.route('/', methods=['POST'])
 def create_color():
     new_color = ColorService.create(request.json)
     return jsonify(new_color.to_dict()), HTTP_STATUS_CREATED
