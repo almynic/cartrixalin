@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField
 
 
 class ColorForm(FlaskForm):
     name = StringField('Name')
-    hex = StringField('Hex')
 
     def to_dict(self):
         # Return a dict but without submit

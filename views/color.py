@@ -26,3 +26,16 @@ def new_color():
         flash('Toner {} has been added!'.format(form.name.data))
         return redirect(url_for('color_views.show_all_colors'))
     return render_template('color/new.html', form=form)
+
+
+@color_views.route('/<int:color_id>/delete', methods=['POST'])
+def delete_color(color_id):
+    # access the id from posted data instead of a form
+    if color_id is not None:
+        deleted_color = ColorService.delete(color_id)
+        if deleted_color:
+            flash(f'Brand {deleted_color.name} has been deleted!')
+            return redirect(url_for('color_views.show_all_colors'))
+
+    flash('An error has occurred. Deletion unsuccessful.')
+    return redirect(url_for('color_views.show_all_colors'))

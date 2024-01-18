@@ -2,28 +2,47 @@
 {% block content %}
     <section class="section">
         <div class="container">
-            <h1 class="title is-3">Farben</h1>
-            <div class="is-inline-flex">
-                <h2 class="title is-5"><a href="{{ url_for('color_views.new_color') }}"
-                                          class="button is-primary">Neu</a></h2>
-                <h2 class="title is-5 ml-2"><a href="{{ url_for('color_views.new_color') }}"
-                                               class="button is-secondary">Upload</a></h2>
-            </div>
-            <div class="is-flex is-flex-wrap-wrap">
-                {% for color in colors %}
-                    <div class="box flex-grow-1 flex-shrink-1"
-                         style="flex-basis: calc(33.3333% - ((40px * 2.6667) - 40px)); margin: 20px;">
-                        <h2 class="title is-5"><a
-                                href="{{ url_for('color_views.show_color', color_id=color.id) }}">{{ color.name }}</a>
-                        </h2>
-                        <form action="delete" method="POST">
-                            <!-- Hidden input field to submit the id -->
-                            <input type="hidden" name="id" value="{{ color.id }}">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <div class="navbar-item">
+                        <h1 class="title is-3">Farben</h1>
+                    </div>
+                </div>
 
-                            <button class="button is-danger mt-2" type="submit">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <!-- Items here... -->
+                    </div>
+
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a href="{{ url_for('color_views.new_color') }}" class="button is-primary">Neu</a>
+                                <a href="{{ url_for('color_views.new_color') }}" class="button is-secondary">Upload</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="columns is-multiline">
+                {% for color in colors %}
+                    <div class="column is-one-quarter">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    <a href="{{ url_for('color_views.show_color', color_id=color.id) }}">{{ color.name }}</a>
+                                </p>
+                            </header>
+                            <footer class="card-footer">
+                                <form action="{{ color.id }}/delete" method="POST">
+                                    <!-- Hidden input field to submit the id -->
+                                    <input type="hidden" name="color_id" value="{{ color.id }}">
+                                    <button class="card-footer-item has-text-danger" type="submit">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </footer>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
